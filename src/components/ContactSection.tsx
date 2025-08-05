@@ -22,48 +22,25 @@ const ContactSection = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    try {
-      // Replace 'YOUR_DJANGO_API_ENDPOINT' with your actual Django backend URL
-      const response = await fetch('YOUR_DJANGO_API_ENDPOINT/contact/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add CSRF token if needed: 'X-CSRFToken': csrfToken,
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Message Sent",
-          description: "Thank you for contacting me. I'll get back to you soon!",
-        });
-        
-        setFormData({
-          name: "",
-          email: "",
-          message: ""
-        });
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
+    // Simulate form submission
+    setTimeout(() => {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again later.",
-        variant: "destructive",
+        title: "Message Sent",
+        description: "Thank you for contacting me. I'll get back to you soon!",
       });
-    } finally {
+      
+      setFormData({
+        name: "",
+        email: "",
+        message: ""
+      });
+      
       setIsSubmitting(false);
-    }
+    }, 1500);
   };
 
   return (
